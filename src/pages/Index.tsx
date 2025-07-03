@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import WelcomePage from '@/components/generator/WelcomePage';
@@ -175,6 +174,36 @@ const Index = () => {
     setCurrentPage(page);
   };
 
+  const getPageProps = () => {
+    const baseProps = {
+      state: generatorState,
+      setState: setGeneratorState,
+    };
+
+    if (currentPage === 0) {
+      // WelcomePage props
+      return {
+        ...baseProps,
+        nextPage,
+      };
+    } else if (currentPage === pages.length - 1) {
+      // FinalPage props
+      return {
+        ...baseProps,
+        goToPage,
+      };
+    } else {
+      // Other pages props
+      return {
+        ...baseProps,
+        currentPage,
+        totalPages: pages.length,
+        nextPage,
+        prevPage,
+      };
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-hidden">
       <AnimatePresence mode="wait">
@@ -186,15 +215,7 @@ const Index = () => {
           transition={{ duration: 0.5, ease: "easeInOut" }}
           className="h-full"
         >
-          <CurrentPageComponent
-            state={generatorState}
-            setState={setGeneratorState}
-            currentPage={currentPage}
-            totalPages={pages.length}
-            nextPage={nextPage}
-            prevPage={prevPage}
-            goToPage={goToPage}
-          />
+          <CurrentPageComponent {...getPageProps()} />
         </motion.div>
       </AnimatePresence>
     </div>

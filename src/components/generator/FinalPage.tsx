@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Copy, Download, RefreshCw, Share2, Play, CheckCircle } from 'lucide-react';
@@ -42,7 +41,6 @@ const FinalPage = ({ state, goToPage }: FinalPageProps) => {
     if (state.socialLinks.x) socialLinks.push(`[Twitter](https://twitter.com/${state.socialLinks.x})`);
     if (state.socialLinks.instagram) socialLinks.push(`[Instagram](https://instagram.com/${state.socialLinks.instagram})`);
     if (state.socialLinks.youtube) socialLinks.push(`[YouTube](https://youtube.com/channel/${state.socialLinks.youtube})`);
-    if (state.socialLinks.github) socialLinks.push(`[GitHub](https://github.com/${state.username})`);
 
     if (socialLinks.length > 0) {
       md += `## 🌐 Connect with me:\n${socialLinks.join(' | ')}\n\n`;

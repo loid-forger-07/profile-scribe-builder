@@ -189,12 +189,12 @@ const AdditionalStuffPage = ({ state, setState, currentPage, totalPages, nextPag
                             <Label className="text-sm text-slate-300">{option.label}</Label>
                             {option.type === 'switch' ? (
                               <Switch
-                                checked={state.additional[component.key][option.key as keyof typeof state.additional[typeof component.key]]}
+                                checked={state.additional[component.key][option.key as keyof typeof state.additional[typeof component.key]] as boolean}
                                 onCheckedChange={(checked) => updateAdditional(component.key, option.key, checked)}
                               />
                             ) : (
                               <Select
-                                value={state.additional[component.key][option.key as keyof typeof state.additional[typeof component.key]] as string}
+                                value={String(state.additional[component.key][option.key as keyof typeof state.additional[typeof component.key]])}
                                 onValueChange={(value) => updateAdditional(component.key, option.key, value)}
                               >
                                 <SelectTrigger className="w-32 bg-slate-900/50 border-slate-600 text-white">
